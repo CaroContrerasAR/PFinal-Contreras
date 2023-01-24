@@ -1,8 +1,11 @@
 let cotizacionD = 0
 let cotizacionP = 0
 let compro = 0
+let percep = asignarOperacion("percepcion")
+let imp = asignarOperacion("imppais")
 
 let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras");
+
 while (entrada != 'ESC') {
     class Monedas {
         constructor(id, nombre, compra, venta) {
@@ -37,12 +40,12 @@ while (entrada != 'ESC') {
             if(monto > 0){
                 for (const money of moneda) {
                     compro = money.compra;
-                    alert("Compra "+cotizarD(monto)+" "+money.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percepcion(monto)+"\n 30% de Impuesto Pais son $"+impPais(monto));
+                    alert("Compra "+cotizarD(monto)+" "+money.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(monto)+"\n 30% de Impuesto Pais son $"+imp(monto));
                 }
             }
             break;
         case "6":
-            monto=prompt("Cuanto en Moneda Extranjera desea Vender")
+            monto=prompt("Cuanto en Moneda Extranjera desea cambiar a Pesos")
             if(monto > 0){
                 for (const money of moneda) {
                     compro = money.venta;
@@ -63,26 +66,10 @@ function cotizarD(monto) {
 function cotizarP(monto) {
     return monto*=compro
 }
-function percepcion(monto){
-    return monto*=0.35    
+function asignarOperacion(op) {
+    if (op == "percepcion") {
+        return (monto) => monto*=0.35
+    } else if (op == "imppais") {
+        return (monto) => monto*=0.30
+    }
 }
-function impPais(monto){
-    return monto*=0.30
-}
-
-
-// function asignarOperacion(op) {
-//     if (op == "compra") {
-//         cotizarD(monto)
-//          //return (a, b) => a + b
-//     } else if (op == "venta") {
-//         cotizarP(monto)
-//         //return (a, b) => a - b
-//     }
-// }
-
-// let comprar = asignarOperacion("compra")
-// let vender = asignarOperacion("venta")
-
-// console.log( comprar(prompt) )  //  10
-// console.log( vender(prompt) )  //  2    
