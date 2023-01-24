@@ -4,23 +4,24 @@ let compro = 0
 let percep = asignarOperacion("percepcion")
 let imp = asignarOperacion("imppais")
 
-let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras");
+let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 
 while (entrada != 'ESC') {
     class Monedas {
-        constructor(id, nombre, compra, venta) {
+        constructor(id, nombre, signo, compra, venta) {
             this.id  = parseInt(id);
             this.nombre  = nombre.toUpperCase();
+            this.signo = signo.toUpperCase();
             this.compra  = parseFloat(compra);
             this.venta  = parseFloat(venta);
         }
     }
     //Declaramos un array de Monedas para almacenar
     const moneda = [];
-    moneda.push(new Monedas(1, "Dolar", 179.31, 187.99));
-    moneda.push(new Monedas(2, "Euros", 191.71, 200.45));
-    moneda.push(new Monedas(3, "Uruguayos", 4.210, 4.410));
-    moneda.push(new Monedas(4, "Reales", 33.600, 34.800));
+    moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
+    moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
+    moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
+    moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
 
     switch (entrada) {
         case "1":
@@ -53,11 +54,18 @@ while (entrada != 'ESC') {
                 }
             }
             break;
+        case "7":
+            buscar=prompt("Queres saber como es el signo para cada Moneda Extranjera\n (Dolar, Euros, Uruguayos, Reales)\n Ingresa la Moneda")
+            if (buscar != 'ESC'){
+                const resultado = moneda.find((moneda) => moneda.nombre === buscar.toUpperCase())
+                alert(`El Signo para ${resultado.nombre} es ${resultado.signo}.`)
+            }
+            break;    
         default:
             alert("Ingrese un Codigo valido o ESC para Salir");
             break;
     }
-    entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras");
+    entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 }
 
 function cotizarD(monto) {
