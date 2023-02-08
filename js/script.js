@@ -1,27 +1,40 @@
-// let cotizacionD = 0
-// let cotizacionP = 0
-// let compro = 0
-// let percep = asignarOperacion("percepcion")
-// let imp = asignarOperacion("imppais")
+class Monedas {
+    constructor(id, nombre, signo, compra, venta) {
+        this.id  = parseInt(id);
+        this.nombre  = nombre.toUpperCase();
+        this.signo = signo.toUpperCase();
+        this.compra  = parseFloat(compra);
+        this.venta  = parseFloat(venta);
+    }
+}
 
+//Declaramos un array de Monedas para almacenar
+const moneda = [];
+moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
+moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
+moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
+moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
+
+let cotizacionD = 0
+let cotizacionP = 0
+let compro = 0
+let percep = asignarOperacion("percepcion")
+let imp = asignarOperacion("imppais")
+
+// Declaro variables para DOM
+let formulario = document.getElementsByName("form")
+let cantidad = document.getElementById("icantidad")
+let divisa1 = document.getElementById("divisas1")
+let boton = document.getElementById('#btn')
+let divisa2 = document.getElementById("#divisas2")
+
+// Defino los Eventos de Boton
+// boton.addEvenListener('click', Intercambiar)
+
+// // PreEntrega Anterior
 // let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 
 // while (entrada != 'ESC') {
-//     class Monedas {
-//         constructor(id, nombre, signo, compra, venta) {
-//             this.id  = parseInt(id);
-//             this.nombre  = nombre.toUpperCase();
-//             this.signo = signo.toUpperCase();
-//             this.compra  = parseFloat(compra);
-//             this.venta  = parseFloat(venta);
-//         }
-//     }
-//     //Declaramos un array de Monedas para almacenar
-//     const moneda = [];
-//     moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
-//     moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
-//     moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
-//     moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
 
 //     switch (entrada) {
 //         case "1":
@@ -68,16 +81,16 @@
 //     entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 // }
 
-// function cotizarD(monto) {
-//      return monto/=compro
-// }
-// function cotizarP(monto) {
-//     return monto*=compro
-// }
-// function asignarOperacion(op) {
-//     if (op == "percepcion") {
-//         return (monto) => monto*=0.35
-//     } else if (op == "imppais") {
-//         return (monto) => monto*=0.30
-//     }
-// }
+function cotizarD(monto) {
+     return monto/=compro
+}
+function cotizarP(monto) {
+    return monto*=compro
+}
+function asignarOperacion(op) {
+    if (op == "percepcion") {
+        return (monto) => monto*=0.35
+    } else if (op == "imppais") {
+        return (monto) => monto*=0.30
+    }
+}
