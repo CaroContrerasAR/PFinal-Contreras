@@ -43,11 +43,55 @@ let boton = document.getElementById("btn")
 let divisa2 = document.getElementById("divisas2")
 
 //Defino los Eventos de Boton
-boton.addEventListener('click', respuestaClick) //Intercambiar Divisas
+boton.addEventListener('click', respuestaClick)
+
+
+
+// Con esto capturo el div del html donde se van a mostrar la convesion de divisas  (puede ser por el ID, class, name)
+let contenedor = document.getElementById("contenedor");
+
+// Acá llamo a la función que esta mas abajo
+//mostrar(moneda);
+
+// functions
 function respuestaClick(){
-    temp=divisa1.value
-    divisa1.value=divisa2.value
-    divisa2.value=temp
+  temp=divisa1.value
+  divisa1.value=divisa2.value
+  divisa2.value=temp
+}
+function validar(){
+  if(cantidad > 0){
+    respuestaClick()
+    mostrar ()
+  }else{contenedor.innerHTML ="la cantidad debe ser mayor que cero"}
+}
+
+function mostrar(moneda) {
+  contenedor.innerHTML = "";
+  for (const money of moneda) {
+    let contenedorBody = document.createElement("div");
+    contenedorBody.className = "col-lg-6";
+    compro = money.compra;
+    contenedorBody.innerHTML = `
+    <div class="conversion">
+      <div class="conversion-from">
+        <p class="conversion-from-text">alert(Compra cotizarD(monto) money.nombre con $monto\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $percep(monto)\n 30% de Impuesto Pais son $ imp(monto))</p>
+        
+      </div>`;
+    //   <div class="conversion-to">
+    //     <p class="precio"><strong> - ${cotizo(divisa1.value,divisa2.value).toFixed(2)}</strong></p>  
+    //   </div>
+  
+    //       <h6 class= "precio"><strong>Precio: $ ${moneda.precio.toFixed(3)}</strong></h6>
+    //       <button id ="${moneda.id}"  class="btn btn-secondary me-md-2">Buy</button>
+    //   </div>
+    // </div>
+    //         `;
+            
+    // <p class="conversion-from-text">Cotizacion : ${moneda.signo} ${divisa1.value}</p>                              
+  
+    contenedor.append(contenedorBody);
+  }
 }
 
 // // PreEntrega Anterior
