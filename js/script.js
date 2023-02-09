@@ -1,19 +1,33 @@
-class Monedas {
-    constructor(id, nombre, signo, compra, venta) {
-        this.id  = parseInt(id);
-        this.nombre  = nombre.toUpperCase();
-        this.signo = signo.toUpperCase();
-        this.compra  = parseFloat(compra);
-        this.venta  = parseFloat(venta);
-    }
-}
-
-//Declaramos un array de Monedas para almacenar
-const moneda = [];
-moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
-moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
-moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
-moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
+let moneda = [
+  {
+    id: 1,
+    nombre: "DOLAR",
+    signo: "U$S",
+    compra: 179.31,
+    venta: 187.99,
+  },
+  {
+    id: 2,
+    nombre: "EUROS",
+    signo: "€",
+    compra: 191.71,
+    venta: 200.45,
+  },
+  {
+    id: 3,
+    nombre: "URUGUAYOS", 
+    signo: "$U",
+    compra: 4.210,
+    venta: 4.410,
+  },
+  {
+    id: 4,
+    nombre: "REALES",
+    signo: "R$",
+    compra: 33.600,
+    venta: 34.800,
+  },
+];
 
 let cotizacionD = 0
 let cotizacionP = 0
@@ -25,17 +39,37 @@ let imp = asignarOperacion("imppais")
 let formulario = document.getElementsByName("form")
 let cantidad = document.getElementById("icantidad")
 let divisa1 = document.getElementById("divisas1")
-let boton = document.getElementById('#btn')
-let divisa2 = document.getElementById("#divisas2")
+let boton = document.getElementById("btn")
+let divisa2 = document.getElementById("divisas2")
 
-// Defino los Eventos de Boton
-// boton.addEvenListener('click', Intercambiar)
+//Defino los Eventos de Boton
+boton.addEventListener('click', respuestaClick) //Intercambiar Divisas
+function respuestaClick(){
+    temp=divisa1.value
+    divisa1.value=divisa2.value
+    divisa2.value=temp
+}
 
 // // PreEntrega Anterior
 // let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 
 // while (entrada != 'ESC') {
+//     class Monedas {
+//         constructor(id, nombre, signo, compra, venta) {
+//             this.id  = parseInt(id);
+//             this.nombre  = nombre.toUpperCase();
+//             this.signo = signo.toUpperCase();
+//             this.compra  = parseFloat(compra);
+//             this.venta  = parseFloat(venta);
+//         }
+//     }
 
+//     //Declaramos un array de Monedas para almacenar
+//     const moneda = [];
+//     moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
+//     moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
+//     moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
+//     moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
 //     switch (entrada) {
 //         case "1":
 //             alert("Cotizacion "+moneda[entrada-1].nombre+": Compra "+moneda[entrada-1].compra+" / Venta "+moneda[entrada-1].venta) 
