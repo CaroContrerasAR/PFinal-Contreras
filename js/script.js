@@ -1,51 +1,35 @@
-let moneda = [
-  {
-    id: 1,
-    nombre: "DOLAR",
-    signo: "U$S",
-    compra: 179.31,
-    venta: 187.99,
-  },
-  {
-    id: 2,
-    nombre: "EUROS",
-    signo: "€",
-    compra: 191.71,
-    venta: 200.45,
-  },
-  {
-    id: 3,
-    nombre: "URUGUAYOS", 
-    signo: "$U",
-    compra: 4.210,
-    venta: 4.410,
-  },
-  {
-    id: 4,
-    nombre: "REALES",
-    signo: "R$",
-    compra: 33.600,
-    venta: 34.800,
-  },
-];
-
 let cotizacionD = 0
 let cotizacionP = 0
 let compro = 0
 let percep = asignarOperacion("percepcion")
 let imp = asignarOperacion("imppais")
 
+class Monedas {
+  constructor(id, nombre, signo, compra, venta) {
+    this.id  = parseInt(id);
+    this.nombre  = nombre.toUpperCase();
+    this.signo = signo.toUpperCase();
+    this.compra  = parseFloat(compra);
+    this.venta  = parseFloat(venta);
+  }
+}
+
+//Declaramos un array de Monedas para almacenar
+const moneda = [];
+moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
+moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
+moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
+moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
+
 // Declaro variables para DOM
 let formulario = document.getElementsByName("form")
-let cantidad = document.getElementById("icantidad")
-let divisa1 = document.getElementById("divisas1")
-let boton = document.getElementById("btn")
-let divisa2 = document.getElementById("divisas2")
+let cantidad = document.getElementById("formCantidad")
+let divisa1 = document.getElementById("formDivisas1")
+let boton = document.getElementById("formBtn")
+let divisa2 = document.getElementById("formDivisas2")
 
 //Defino los Eventos de Boton
 boton.addEventListener('click', respuestaClick)
-
-
 
 // Con esto capturo el div del html donde se van a mostrar la convesion de divisas  (puede ser por el ID, class, name)
 let contenedor = document.getElementById("contenedor");
@@ -60,7 +44,7 @@ function respuestaClick(){
   divisa2.value=temp
 }
 function validar(){
-  if(cantidad > 0){
+  if(cantidad.value > 0){
     respuestaClick()
     mostrar ()
   }else{contenedor.innerHTML ="la cantidad debe ser mayor que cero"}
@@ -70,26 +54,19 @@ function mostrar(moneda) {
   contenedor.innerHTML = "";
   for (const money of moneda) {
     let contenedorBody = document.createElement("div");
-    contenedorBody.className = "col-lg-6";
+    //contenedorBody.className = "col-lg-6";
     compro = money.compra;
     contenedorBody.innerHTML = `
     <div class="conversion">
       <div class="conversion-from">
-        <p class="conversion-from-text">alert(Compra cotizarD(monto) money.nombre con $monto\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $percep(monto)\n 30% de Impuesto Pais son $ imp(monto))</p>
-        
-      </div>`;
-    //   <div class="conversion-to">
-    //     <p class="precio"><strong> - ${cotizo(divisa1.value,divisa2.value).toFixed(2)}</strong></p>  
-    //   </div>
-  
-    //       <h6 class= "precio"><strong>Precio: $ ${moneda.precio.toFixed(3)}</strong></h6>
-    //       <button id ="${moneda.id}"  class="btn btn-secondary me-md-2">Buy</button>
-    //   </div>
-    // </div>
-    //         `;
-            
-    // <p class="conversion-from-text">Cotizacion : ${moneda.signo} ${divisa1.value}</p>                              
-  
+        <p class="conversion-from-text">"Compra "+cotizarD(monto)+" "+money.nombre+"con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $ "+percep(monto)+"\n 30% de Impuesto Pais son $"+imp(monto)"
+        </p>
+        <!--Compra cotizarD(monto) money.nombre con $monto\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $percep(monto)\n 30% de Impuesto Pais son $ {imp(monto)}-->
+      </div>
+    </div>
+    <div class="conversion-to">
+      <p class="precio"><strong> - ${cotizo(divisa1.value,divisa2.value).toFixed(2)}</strong></p>  
+    </div>`;         
     contenedor.append(contenedorBody);
   }
 }
@@ -98,22 +75,7 @@ function mostrar(moneda) {
 // let entrada = prompt(" 1 - Cotizar Dolares (U$S) \n 2 - Cotizar Euros (€)\n 3 - Cotizar Uruguayos ($U)\n 4 - Cotizar Reales (R$)\n 5 - Simular Compra de Monedas Extranjeras\n 6 - Simular Venta de Monedas Extranjeras\n 7 - Conoce el Signo de las Monedas Extranjeras");
 
 // while (entrada != 'ESC') {
-//     class Monedas {
-//         constructor(id, nombre, signo, compra, venta) {
-//             this.id  = parseInt(id);
-//             this.nombre  = nombre.toUpperCase();
-//             this.signo = signo.toUpperCase();
-//             this.compra  = parseFloat(compra);
-//             this.venta  = parseFloat(venta);
-//         }
-//     }
-
-//     //Declaramos un array de Monedas para almacenar
-//     const moneda = [];
-//     moneda.push(new Monedas(1, "Dolar", "u$s" , 179.31, 187.99));
-//     moneda.push(new Monedas(2, "Euros", "€" , 191.71, 200.45));
-//     moneda.push(new Monedas(3, "Uruguayos", "$u" , 4.210, 4.410));
-//     moneda.push(new Monedas(4, "Reales", "r$" , 33.600, 34.800));
+//     
 //     switch (entrada) {
 //         case "1":
 //             alert("Cotizacion "+moneda[entrada-1].nombre+": Compra "+moneda[entrada-1].compra+" / Venta "+moneda[entrada-1].venta) 
