@@ -1,0 +1,7 @@
+[
+    {"id": "1", "nombre": "PESOS", "signo": "AR$", "compra": 1, "venta": 1},
+    {"id": "2", "nombre": "DOLAR", "signo": "U$S", "compra": 179.31, "venta": 187.99},
+    {"id": "3", "nombre": "EUROS", "signo": "€", "compra": 191.71, "venta": 200.45},
+    {"id": "4", "nombre": "URUGUAYOS", "signo": "$U", "compra": 4.210, "venta": 4.410},
+    {"id": "5", "nombre": "REALES", "signo": "R$", "compra": 33.600, "venta": 34.800}
+]

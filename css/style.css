@@ -67,6 +67,9 @@ img {
     -moz-user-select: none;
     user-select: none;
 }
+.exchange {
+    text-align: center;
+}
 footer{
     margin-top: 2rem;
     text-align: center;
