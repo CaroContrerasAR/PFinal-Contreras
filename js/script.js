@@ -53,12 +53,13 @@ function respuestaClick(){
   divisa2.value=temp
   for (const money of moneda) {
     if (money.nombre===divisa1.value){
-    exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
+      exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
     }
-  }  
-  for (const money of moneda) {
-    if (money.nombre===divisa2.value){
-    exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
+  }    
+  for (const money2 of moneda) {
+      if (money2.nombre===divisa2.value){
+        let resultado=cotizar(cantidad.value)
+        exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
     }
   }
 }
@@ -102,24 +103,7 @@ function mostrar() {
   }
 }  
 
-  // contenedor.innerHTML = "";
-  // for (const money of moneda) {
-  //   let contenedorBody = document.createElement("div");
-  //   contenedorBody.className = "col-lg-6";
-  //   compro = money.compra;
-  //   contenedorBody.innerHTML = `
-  //   <div class="conversion">
-  //     <div class="conversion-from">
-  //       <p class="conversion-from-text">"Compra "+cotizarD(divisa2.value)+" "+money.nombre+"con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $ "+percep(monto)+"\n 30% de Impuesto Pais son $"+imp(monto)"
-  //       </p>
-  //       <!--Compra cotizarD(monto) money.nombre con $monto\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $percep(monto)\n 30% de Impuesto Pais son $ {imp(monto)}-->
-  //     </div>
-  //   </div>
-  //   <div class="conversion-to">
-  //     <p class="precio"><strong> - ${cotizarP(divisa1.value).toFixed(4)}</strong></p>  
-  //   </div>`;         
-  //   contenedor.append(contenedorBody);
-  // }
+
 
 // function cotizarD(monto) {
 //      return monto/=compro
@@ -141,18 +125,18 @@ function cotizar(cantidad) {
   
   }  
   
-  for (const money of moneda) {
-    compro = money.compra;
-    alert("Compra "+cotizarD1(cantidad.value)+" "+money.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(cantidad.value)+"\n 30% de Impuesto Pais son $"+imp(cantidad.value));
-  }
+  // for (const money of moneda) {
+  //   compro = money.compra;
+  //   alert("Compra "+cotizarD1(cantidad.value)+" "+money.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(cantidad.value)+"\n 30% de Impuesto Pais son $"+imp(cantidad.value));
+  // }
 
   
-  const resultado =cantidad*(moneda.find((moneda) => (moneda.nombre == divisa1.value.toUpperCase()))/moneda.find((moneda) => (moneda.nombre == divisa2.value.toUpperCase())))
-  monto=cantidad*resultado.compra
-  return(`El Signo para ${resultado.nombre} es ${resultado.signo}.`)
-  "Compra "+cotizarD(monto)+" "+resultado.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(monto)+"\n 30% de Impuesto Pais son $"+imp(monto)
-  //             }
-    return monto*=compro
+  // const resultado =cantidad*(moneda.find((moneda) => (moneda.nombre == divisa1.value.toUpperCase()))/moneda.find((moneda) => (moneda.nombre == divisa2.value.toUpperCase())))
+  // monto=cantidad*resultado.compra
+  // return(`El Signo para ${resultado.nombre} es ${resultado.signo}.`)
+  // "Compra "+cotizarD(monto)+" "+resultado.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(monto)+"\n 30% de Impuesto Pais son $"+imp(monto)
+  // //             }
+  //   return monto*=compro
 }
 
 function asignarOperacion(op) {
