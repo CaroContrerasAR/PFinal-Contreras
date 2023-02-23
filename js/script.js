@@ -8,8 +8,8 @@
 class Monedas {
   constructor(id, nombre, signo, compra, venta) {
     this.id  = parseInt(id);
-    this.nombre  = nombre.toUpperCase();
-    this.signo = signo.toUpperCase();
+    this.nombre  = nombre;
+    this.signo = signo;
     this.compra  = parseFloat(compra);
     this.venta  = parseFloat(venta);
   }
@@ -28,21 +28,10 @@ let divisa1 = document.getElementById("formDivisas1")
 let boton = document.getElementById("formBtn")
 let divisa2 = document.getElementById("formDivisas2")
 let exc = document.getElementById("exchange");
+let exc1 = document.getElementById("exchange");
+let exc2 = document.getElementById("exchange");
 
-// //campos ingresados
-// boton.addEventListener('click', respuestaClick)
-
-
-// for (const money of moneda) {
-//   if (money.nombre===divisa1.value){
-//     exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
-//   }
-// }
-// for (const money of moneda) {    
-//   if (money.nombre===divisa2.value){
-//     exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
-//   }
-// }
+mostrarMonedas()
 
 // ** FUNCIONES **
 
@@ -51,103 +40,51 @@ function mostrarMonedas(){
     const option = document.createElement("option")
     option.text = moneda.nombre
     option.value = moneda.compra
+    const nameD1 = moneda.nombre
     divisa1.appendChild(option)
   })
   moneda.forEach((moneda)=>{
     const option = document.createElement("option")
     option.text = moneda.nombre
     option.value = moneda.compra
+    const nameD2 = moneda.nombre
     divisa2.appendChild(option)
   })
 }
 
-mostrarMonedas()
-
-const calcular=(divisa1,divisa2)=>{
-  let resultado = cantidad.value * (divisa1.value / divisa2.value)
-  exc.innerHTML = `<p>El Cambio es de ${resultado}</p>`
-  console.log(resultado)
+cantidad.onchange = () =>{console.log("change cantidad");
+   calcular(divisa1,divisa2)
+}
+divisa1.onchange = () =>{console.log("change div1");
+  calcular(divisa1,divisa2)
+  // if (divisa1.text == "Pesos"){exc.innerHTML = `<p> El Cambio es <strong>${(resultado).toFixed(4)}</strong>\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $ ${percep(cantidad.value)}\n 30% de Impuesto Pais son $ ${imp(cantidad.value)}</p>`}
 }
 
-boton.addEventListener('click', ()=>calcular(divisa1,divisa2))
+divisa2.onchange = () =>{ console.log("change div2");
+  calcular(divisa1,divisa2)
+}
 
-// function respuestaClick(){
-//   temp=divisa1.value
-//   divisa1.value=divisa2.value
-//   divisa2.value=temp
-//   for (const money of moneda) {
-//     if (money.nombre===divisa1.value){
-//       exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
-//     }
-//   }    
-//   for (const money of moneda) {
-//       if (money.nombre===divisa2.value){
-//         let resultado=cotizar(cantidad.value)
-//         exc.innerHTML+= `<p><strong>${money.signo} ${resultado}</strong></p>`;
-//     }
-//   }
-// }
-// function mostrar() {
-//   cantidad.onchange = () =>{ 
-//     for (const money of moneda) {
-//       if (money.nombre===divisa1.value){
-//       exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
-//       }
-//     }  
-//     for (const money of moneda) {
-//       if (money.nombre===divisa2.value){
-//       exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
-//       }
-//     }
-//   }
-//   divisa1.onchange = () =>{
-//     for (const money of moneda) {
-//       if (money.nombre===divisa1.value){
-//       exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
-//       }
-//     }  
-//     for (const money of moneda) {
-//       if (money.nombre===divisa2.value){
-//       exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
-//       }
-//     }
-//   }
-//   divisa2.onchange = () =>{
-//     for (const money of moneda) {
-//       if (money.nombre===divisa1.value){
-//       exc.innerHTML= `<p>${money.signo} ${cantidad.value} = `
-//       }
-//     }  
-//     for (const money of moneda) {
-//       if (money.nombre===divisa2.value){
-//       exc.innerHTML+= `<p><strong>${money.signo} cotizar(cantidad.value)</strong></p>`;
-//       }
-//     }
-//   }
-// }  
+const calcular=(divisa1,divisa2)=>{
+  console.log("calculo")
+  let resultado = cantidad.value * (divisa1.value / divisa2.value)
+  exc.innerHTML = `<p> El Cambio es <strong>${(resultado).toFixed(4)}</strong></p>`
+}
+  // if(divisa1.text!="Pesos"){
+  // exc.innerHTML = `<p> El Cambio es <strong>${(resultado).toFixed(4)}</strong></p>`
+  // }else{
+  //   exc.innerHTML = `<p> El Cambio es <strong>${(resultado).toFixed(4)}</strong>\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $ ${percep(cantidad.value)}\n 30% de Impuesto Pais son $ ${imp(cantidad.value)}</p>`
+  // }
 
+boton.addEventListener('click',()=>respuestaClick())
 
+function respuestaClick(){
+  console.log("resp Click")
+  temp=divisa1.value
+  divisa1.value=divisa2.value
+  divisa2.value=temp
+  calcular(divisa1,divisa2)
+  }
 
-// // function cotizarD(monto) {
-// //      return monto/=compro
-// // }
-
-// function cotizar(cantidad,divisa1,divisa2) {//return cantidad.value*(divisa1/divisa2)
-//   for (const money1 of moneda) {
-//     if (money1.nombre===divisa1.value){
-//     cotizarD1=money1
-//     }
-//     for (const money2 of moneda) {
-//       if (money2.nombre===divisa2.value){
-//         cotizarD2=money2
-//       }
-//       return cantidad.value*(cotizarD1.compra/cotizarD2.compra)
-//       console.log("pasooooo")
-//       //return cantidad.value*cotizacion
-//     }
-//   }
-  
-  
 //   // for (const money of moneda) {
 //   //   compro = money.compra;
 //   //   alert("Compra "+cotizarD1(cantidad.value)+" "+money.nombre+" con $"+monto+"\n recuerde agregar los Impuestos sobre la operacion:\n 35% de Percepcion RG4815/20 son $"+percep(cantidad.value)+"\n 30% de Impuesto Pais son $"+imp(cantidad.value));
@@ -162,10 +99,10 @@ boton.addEventListener('click', ()=>calcular(divisa1,divisa2))
 //   //   return monto*=compro
 // }
 
-// function asignarOperacion(op) {
-//     if (op == "percepcion") {
-//         return (monto) => monto*=0.35
-//     } else if (op == "imppais") {
-//         return (monto) => monto*=0.30
-//     }
-// }
+function asignarOperacion(op) {
+    if (op == "percepcion") {
+        return (monto) => monto*=0.35
+    } else if (op == "imppais") {
+        return (monto) => monto*=0.30
+    }
+}
